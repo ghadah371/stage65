@@ -4,7 +4,7 @@ set -e
 date
 echo "Updating Python application on VM..."
 
-APP_DIR="/home/azureuser/stage6.5"
+APP_DIR="/home/azureuser/stage65"
 REPO_URL="https://github.com/ghadah371/stage65.git"
 BRANCH="main"
 GITHUB_TOKEN=$GITHUB_TOKEN
