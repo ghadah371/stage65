@@ -1,6 +1,7 @@
 name: Python App CI/CD Pipeline with Direct Deployment
 
 on:
+  workflow_dispatch:  # 👈 This adds the manual trigger option
   push:
     branches:
       - main
