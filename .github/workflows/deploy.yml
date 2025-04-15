@@ -44,6 +44,6 @@ jobs:
           --force-update \
           --publisher Microsoft.Azure.Extensions \
           --version 2.1 \
-          --settings '{"commandToExecute": "bash /home/azureuser/stage65/update.sh"}'
+          --settings '{"commandToExecute": "bash /home/azureuser/stage6.5/update.sh"}'
 
     
