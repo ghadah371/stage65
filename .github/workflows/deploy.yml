@@ -47,7 +47,7 @@ jobs:
       run: |
         az vm extension delete \
           --resource-group ${{ secrets.RESOURCE_GROUP }} \
-          --vm-name ${{ secrets.VM_NAME }} \
+          --vm-name ${{ secrets.VMSS_NAME }} \
           --name CustomScript || true
 
 
