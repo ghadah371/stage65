@@ -34,6 +34,14 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+  # Remove old extension (optional cleanup step)
+    - name: Remove old CustomScript Extension
+      run: |
+        az vm extension delete \
+          --resource-group ${{ secrets.RESOURCE_GROUP }} \
+          --vm-name ${{ secrets.VM_NAME }} \
+          --name CustomScript || true        
+
     # Execute the Update Script on the VM
     - name: Deploy to Azure VM
       run: |
