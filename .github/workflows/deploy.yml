@@ -1,7 +1,6 @@
 name: Python App CI/CD Pipeline with Direct Deployment
 
 on:
-  workflow_dispatch:  # 👈 This adds the manual trigger option
   push:
     branches:
       - main
@@ -21,7 +20,6 @@ jobs:
       with:
         python-version: '3.9'
         cache: 'pip' # caching pip dependencies
-
     - run: |
         pip install -r requirements.txt
 
@@ -36,30 +34,13 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: Debug secrets
+    # Execute the Update Script on the VM
+    - name: Deploy to Azure VM
       run: |
-        echo "RG: ${{ secrets.RESOURCE_GROUP }}"
-        echo "VMSS: ${{ secrets.VMSS_NAME }}"
-
-
-    # Remove old extension (optional cleanup step)
-    - name: Remove old CustomScript Extension
-      run: |
-        az vm extension delete \
+        az vm extension set \
           --resource-group ${{ secrets.RESOURCE_GROUP }} \
-          --vm-name ${{ secrets.VMSS_NAME }} \
-          --name CustomScript || true
-
-
-    - name: Deploy to Azure VMSS
-      run: |
-        az vmss extension set \
-          --resource-group ${{ secrets.RESOURCE_GROUP }} \
-          --vmss-name ${{ secrets.VMSS_NAME }} \
+          --vm-name ${{ secrets.VM_NAME }} \
           --name CustomScript \
           --force-update \
           --publisher Microsoft.Azure.Extensions \
-          --version 2.1 \
-          --settings '{"commandToExecute": "bash /home/azureuser/stage65/update.sh"}'
-
-    
+          --settings '{"commandToExecute": "/home/azureuser/my-python-app/update_app.sh"}'
