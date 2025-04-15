@@ -38,7 +38,7 @@ DB_PORT = client.get_secret('PROJ-DB-PORT').value
 OPENAI_API_KEY = client.get_secret('PROJ-OPENAI-API-KEY').value
 AZURE_STORAGE_SAS_URL = client.get_secret('PROJ-AZURE-STORAGE-SAS-URL').value
 AZURE_STORAGE_CONTAINER = client.get_secret('PROJ-AZURE-STORAGE-CONTAINER').value
-CHROMADB_HOST = client.get_secret('PROJ-CHROMADB-HOST').value
+CHROMADB_HOST = client.get_secret('PROJ-CHROMADB-HOST1').value
 CHROMADB_PORT = client.get_secret('PROJ-CHROMADB-PORT').value
 
 

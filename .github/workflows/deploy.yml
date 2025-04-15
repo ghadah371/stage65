@@ -42,6 +42,15 @@ jobs:
         echo "VMSS: ${{ secrets.VMSS_NAME }}"
 
 
+    # Remove old extension (optional cleanup step)
+    - name: Remove old CustomScript Extension
+      run: |
+        az vm extension delete \
+          --resource-group ${{ secrets.RESOURCE_GROUP }} \
+          --vm-name ${{ secrets.VM_NAME }} \
+          --name CustomScript || true
+
+
     - name: Deploy to Azure VMSS
       run: |
         az vmss extension set \
