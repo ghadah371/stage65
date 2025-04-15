@@ -23,7 +23,6 @@ sudo -u azureuser /home/azureuser/stage65/venv/bin/pip install -r ${APP_DIR}/req
 
 
 # Restart the service
-sudo systemctl restart backend
-sudo systemctl restart frontend
+sudo systemctl restart backend frontend
 
 echo "Python application update completed!"
